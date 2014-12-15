@@ -69,6 +69,10 @@ except:
 EOM
 endfunction
 
-nnoremap <unique> <Plug>OpenUrl <SID>OpenUlr()
+if !hasmapto("<SID>OpenUrl()")
+    nnoremap <unique> <Plug>OpenUrl <SID>OpenUrl()
+endif
 " set a command for OpenUrl function
-command OpenUrl :call <SID>OpenUrl()
+if !exists(":OpenUrl")
+    command OpenUrl :call <SID>OpenUrl()
+endif
